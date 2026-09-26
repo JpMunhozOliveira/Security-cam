@@ -1,0 +1,13 @@
+{
+  "cameras": [
+    {
+      "nome": "Camera 1",
+      "url": "http://192.168.1.3:8080/video",
+      "zona": [200, 150, 400, 350],
+      "modo_deteccao": "corpo",
+      "pular_frames": true,
+      "quantidade_pular_frames": 3,
+      "mostrar_tela": true
+    }
+  ]
+}

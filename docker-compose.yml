@@ -1,6 +1,7 @@
 services:
   camera-app:
     build: .
+    restart: unless-stopped
     environment:
       - DISPLAY=${DISPLAY}
       - WAYLAND_DISPLAY=${WAYLAND_DISPLAY}
@@ -9,3 +10,12 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /mnt/wslg:/mnt/wslg
+      - ./config.json:/code/config.json
+
+  config-web:
+    build: ./web
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./config.json:/code/config.json

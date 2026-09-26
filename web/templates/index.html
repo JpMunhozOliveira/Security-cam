@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Configuração de Câmeras</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 700px; margin: 40px auto; padding: 0 20px; background: #f5f5f5; }
+        h1 { color: #222; }
+        .camera-card { background: white; border-radius: 8px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+        .camera-info b { font-size: 16px; }
+        .camera-info span { color: #666; font-size: 14px; display: block; }
+        .botoes a, .botoes button { margin-left: 8px; padding: 8px 14px; border-radius: 6px; border: none; cursor: pointer; text-decoration: none; font-size: 14px; }
+        .btn-editar { background: #2563eb; color: white; }
+        .btn-remover { background: #dc2626; color: white; }
+        form.add-form { background: white; border-radius: 8px; padding: 16px; margin-top: 24px; }
+        form.add-form input { display: block; width: 100%; padding: 8px; margin: 6px 0 14px 0; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; }
+        form.add-form button { background: #16a34a; color: white; padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Câmeras configuradas</h1>
+
+    {% for camera in cameras %}
+    <div class="camera-card">
+        <div class="camera-info">
+            <b>{{ camera.nome }}</b>
+            <span>{{ camera.url }}</span>
+            <span>Zona: {{ camera.zona }}</span>
+        </div>
+        <div class="botoes">
+            <a class="btn-editar" href="{{ url_for('editar', indice=loop.index0) }}">Editar zona</a>
+            <form style="display:inline" method="POST" action="{{ url_for('remover', indice=loop.index0) }}">
+                <button class="btn-remover" onclick="return confirm('Remover esta câmera?')">Remover</button>
+            </form>
+        </div>
+    </div>
+    {% else %}
+    <p>Nenhuma câmera cadastrada ainda.</p>
+    {% endfor %}
+
+    <form class="add-form" method="POST" action="{{ url_for('adicionar') }}">
+        <h3>Adicionar câmera</h3>
+        <label>Nome</label>
+        <input type="text" name="nome" placeholder="Ex: Câmera da máquina" required>
+        <label>Endereço (URL)</label>
+        <input type="text" name="url" placeholder="http://192.168.1.7:8080/video" required>
+        <button type="submit">Adicionar câmera</button>
+    </form>
+</body>
+</html>

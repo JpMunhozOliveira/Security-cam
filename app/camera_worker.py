@@ -1,5 +1,6 @@
 import os
 os.environ["OPENCV_FFMPEG_LOGLEVEL"] = "-8"
+os.environ["OPENCV_FFMPEG_CAPTURE_OPTIONS"] = "rtsp_transport;tcp"
 
 import cv2
 import time
@@ -9,7 +10,6 @@ from app.deteccao import pessoa_na_zona
 from app.alerta import tocar_alerta
 
 TEMPO_ENTRE_ALERTAS = 30
-INTERVALO_HEARTBEAT = 10
 
 def processar_camera(camera_config):
     nome = camera_config["nome"]
@@ -43,10 +43,6 @@ def processar_camera(camera_config):
             continue
 
         contador += 1
-
-        if time.time() - ultimo_heartbeat > INTERVALO_HEARTBEAT:
-            print(f"[{nome}] Ainda monitorando... ({contador} frames lidos)")
-            ultimo_heartbeat = time.time()
 
         if pular_frames and contador % quantidade_pular_frames != 0:
             continue

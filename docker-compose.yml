@@ -8,9 +8,11 @@ services:
       - XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR}
       - PULSE_SERVER=unix:/mnt/wslg/PulseServer
     volumes:
+      - ./app:/code/app
+      - ./teste_alerta.py:/code/teste_alerta.py
+      - ./config.json:/code/config.json
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /mnt/wslg:/mnt/wslg
-      - ./config.json:/code/config.json
 
   config-web:
     build: ./web

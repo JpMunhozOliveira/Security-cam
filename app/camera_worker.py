@@ -59,7 +59,7 @@ def processar_camera(camera_config):
         if pessoa_detectada:
             agora = time.time()
             if agora - ultimo_alerta > TEMPO_ENTRE_ALERTAS:
-                tocar_alerta(nome)
+                tocar_alerta(nome, camera_config)
                 ultimo_alerta = agora
 
         if mostrar_tela:

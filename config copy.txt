@@ -1,0 +1,48 @@
+{
+  "cameras": [
+    {
+      "nome": "Teste",
+      "url": "rtsp://admin:@admin.1234@10.0.2.24:554/cam/realmonitor?channel=1&subtype=1",
+      "zona": [
+        373,
+        97,
+        548,
+        428
+      ],
+      "serial": "DPE0003777172",
+      "usuario": "admin",
+      "senha": "@admin.1234",
+      "mensagem_alerta": "Teste",
+      "som_local": false,
+      "relay": true,
+      "track1": 0,
+      "track2": 0,
+      "modo_deteccao": "corpo",
+      "pular_frames": true,
+      "quantidade_pular_frames": 3,
+      "mostrar_tela": true
+    },
+    {
+      "nome": "Frente",
+      "url": "rtsp://admin:@admin.1234@10.0.2.194:554/cam/realmonitor?channel=1&subtype=1",
+      "zona": [
+        373,
+        97,
+        548,
+        428
+      ],
+      "serial": "POEL5201154FS",
+      "usuario": "admin",
+      "senha": "@admin.1234",
+      "mensagem_alerta": "Seja Bem-Vindo",
+      "som_local": false,
+      "relay": true,
+      "track1": 0,
+      "track2": 0,
+      "modo_deteccao": "pes",
+      "pular_frames": true,
+      "quantidade_pular_frames": 3,
+      "mostrar_tela": true
+    }
+  ]
+}

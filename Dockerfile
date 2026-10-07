@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y \
     fontconfig \
     fonts-dejavu-core \
     espeak-ng \
+    ffmpeg \
     pulseaudio-utils \
     && rm -rf /var/lib/apt/lists/*
 
@@ -35,6 +36,7 @@ RUN pip install -r requirements.txt
 
 # Copia o código e a configuração para dentro do container
 COPY app/ ./app/
+COPY teste_alerta.py .
 COPY config.json .
 
 CMD ["python", "-u", "-m", "app.main"]

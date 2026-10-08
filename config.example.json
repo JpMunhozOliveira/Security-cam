@@ -1,0 +1,29 @@
+{
+  "cameras": [
+    {
+      "nome": "Teste",
+      "url": "rtsp://admin:SENHA@IP:554/cam/realmonitor?channel=1&subtype=1",
+      "zona": [373, 97, 548, 428],
+      "ip": "IP",
+      "usuario": "admin",
+      "senha": "@aSENHA",
+      "mensagem_alerta": "Teste",
+      "som_local": false,
+      "relay": true,
+      "track1": 0,"track2": 0,
+      "modo_deteccao": "corpo",
+      "pular_frames": true,
+      "quantidade_pular_frames": 3,
+      "mostrar_tela": true
+    },
+    {
+      "nome": "Frente",
+      "url": "rtsp://admin:SENHA@IP:554/cam/realmonitor?channel=1&subtype=1",
+      "zona": [373, 97, 548, 428],
+      "senha": "SENHA",
+      "mensagem_alerta": "Seja Bem-Vindo",
+      "quantidade_pular_frames": 3,
+      "mostrar_tela": false
+    }
+  ]
+}

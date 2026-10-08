@@ -1,6 +1,23 @@
+# Python
 *.pyc
 __pycache__/
+.venv/
+venv/
+
+# Credenciais (use config.example.json como modelo)
+config.json
+config copy.txt
+.env
+
+# Modelos (baixados no build do Docker)
+*.pt
+
+# Mídia de teste
 *.jpg
 *.jpeg
 *.mp4
-teste.jpg
+
+# Editor / sistema
+.vscode/
+.idea/
+.DS_Store

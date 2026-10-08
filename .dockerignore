@@ -1,0 +1,23 @@
+# Credenciais: nunca entram na imagem (o config.json vem pelo volume do compose)
+config.json
+config copy.txt
+.env
+
+# Git
+.git
+.gitignore
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Modelos (o yolov8n.pt é baixado durante o build)
+*.pt
+
+# Editor / sistema
+.vscode/
+.idea/
+.DS_Store

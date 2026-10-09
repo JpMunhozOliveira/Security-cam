@@ -1,3 +1,4 @@
+import threading
 import time
 
 from app.alerta import tocar_alerta
@@ -20,7 +21,15 @@ def _pessoa_na_zona(results, zona, modo):
     return False
 
 
-def processar_camera(camera_config):
+def processar_camera(camera_config, parar=None):
+    """Processa uma câmera até `parar` ser acionado (ou a tecla 'q' na janela).
+
+    `parar` é um threading.Event compartilhado: quando o main o aciona
+    (Ctrl+C / docker stop), o loop sai, o stream é fechado e o relatório
+    final é impresso."""
+    if parar is None:
+        parar = threading.Event()
+
     nome = camera_config["nome"]
     url = camera_config["url"]
     zona = camera_config["zona"]
@@ -58,7 +67,7 @@ def processar_camera(camera_config):
         return bool(janela and janela.ativa and not janela.aguardar(1))
 
     try:
-        while True:
+        while not parar.is_set():
             metricas.relatorio_se_hora(TEMPO_RELATORIO)
 
             espera = ESPERA_FRAME_JANELA_S if (janela and janela.ativa) else ESPERA_FRAME_S
@@ -83,7 +92,7 @@ def processar_camera(camera_config):
                 results, espera_yolo, inferencia = detectar(frame)
             except Exception as e:
                 print(f"[{nome}] Erro no YOLO: {type(e).__name__}: {e}")
-                time.sleep(1)
+                parar.wait(1)
                 continue
             metricas.registrar_yolo(inferencia)
             metricas.registrar_espera(espera_yolo)
